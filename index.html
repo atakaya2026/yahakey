@@ -12,16 +12,16 @@
     /* 히어로 타이틀(데바나가리)용 폰트 */
     @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;700;900&display=swap');
     
-    body { 
-        font-family: 'Sarabun', sans-serif; 
-        word-break: keep-all; 
-		line-break: loose;
+    body {
+        font-family: 'Sarabun', sans-serif;
+        /* 일본어는 글자 단위 개행이 정상. 금칙(。、」 등 줄머리 금지)만 지킨다 */
+        word-break: normal;
+		line-break: strict;
+		overflow-wrap: break-word;
 		overflow-x: hidden; /* 가로 스크롤 방지 */
     }
-	span, p, h3 {
-    word-break: break-word;
-    overflow-wrap: break-word;
-}
+	/* 짧은 헤드라인은 어절이 쪼개지지 않게 (필요한 곳에서 inline-block 스팬으로 감쌈) */
+	.keep-phrase { word-break: keep-all; }
 .hero-copy {
     left: 50%;
     top: 82%;
@@ -52,16 +52,18 @@
 }
 @media (max-width: 767px) {
     .hero-copy {
-        left: 48%;
+        left: 50%;
         top: auto;
-        bottom: 26%;
+        bottom: 24%;
         transform: translateX(-50%);
-
-        width: 88%;
+        width: 92%;
     }
-    .hero-copy .hero-line-lead { font-size: clamp(1.8rem, 7vw, 2.2rem); }
-    .hero-copy .hero-line-main { font-size: clamp(2.4rem, 8vw, 2.5rem); }
-    .hero-copy .hero-subtitle { font-size: clamp(1.3rem, 4.8vw, 1.3rem); margin-top: 0.7em; }
+    /* 모바일에선 한 줄에 들어오도록 줄바꿈 금지 + 뷰포트 폭에 맞춰 축소 */
+    .hero-copy .hero-line-lead,
+    .hero-copy .hero-line-main { white-space: nowrap; }
+    .hero-copy .hero-line-lead { font-size: clamp(1.4rem, 5.6vw, 2rem); }
+    .hero-copy .hero-line-main { font-size: clamp(1.7rem, 7vw, 2.4rem); }
+    .hero-copy .hero-subtitle { font-size: clamp(1.1rem, 4.2vw, 1.3rem); margin-top: 0.6em; }
 }
 </style>
 </head>
@@ -91,28 +93,28 @@
     </div>
 </section>
 
-<section id="intro" class="py-20 bg-white text-center px-6">
+<section id="intro" class="pt-14 pb-16 md:py-20 bg-white text-center px-6">
     <div class="max-w-4xl mx-auto">
-        <p class="text-blue-600 font-bold mb-0 text-3xl md:text-5xl tracking-tighter -mt-6">
-    <span class="inline-block"><br><br><br>左手にテンキー、</span>
-    <br class="md:hidden"> <span class="inline-block">右手でフリック</span>
-</p>
-        <h1 class="text-8xl md:text-[80px] font-black mb-0 md:leading-[1.2] text-gray-800" translate="no">
-			<span class="text-blue-600">ヤハキー</span>
-		</h1>
-        <div class="mt-12">
-            <img src="images/pc.png" alt="សបយក" class="mx-auto w-full max-w-xl drop-shadow-2xl rounded-xl">
+        <p class="text-blue-600 font-bold text-2xl md:text-5xl tracking-tight leading-snug">
+            <span class="inline-block keep-phrase">左手にテンキー、</span><br class="md:hidden">
+            <span class="inline-block keep-phrase">右手でフリック</span>
+        </p>
+        <h1 class="text-[3.75rem] md:text-[100px] font-black mt-2 md:mt-4 leading-none md:leading-[1.2] text-gray-800 whitespace-nowrap" translate="no">
+            <span class="text-blue-600">ヤハキー</span>
+        </h1>
+        <div class="mt-8 md:mt-12">
+            <img src="images/pc.png" alt="ヤハキーのキー配列" class="mx-auto w-full max-w-xl drop-shadow-2xl rounded-xl">
         </div>
     </div>
 </section>
 
-    <section id="how-to" class="py-20 max-w-6xl mx-auto px-6 border-t border-gray-100">
-        <div class="flex flex-col md:flex-row items-center gap-12">
+    <section id="how-to" class="py-14 md:py-20 max-w-6xl mx-auto px-6 border-t border-gray-100">
+        <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
             <div class="md:w-1/2">
                 <img src="images/mnemonic.png" alt="ဗျည်းရိုက်နှိပ်ပုံစံ" class="w-full rounded-xl border border-gray-100 shadow-sm">
             </div>
             <div class="md:w-1/2">
-                <h3 class="text-2xl font-bold mb-6 text-gray-800">一度見たら絶対に忘れられないテンキー配列</h3>
+                <h3 class="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-gray-800 leading-snug text-balance">一度見たら絶対に忘れられない<span class="keep-phrase">テンキー配列</span></h3>
                 <ul class="space-y-4 text-gray-600">
                     <li class="flex items-start">
                         <span class="text-blue-500 mr-3 mt-1">✓</span>
@@ -124,14 +126,14 @@
         </div>
     </section>
 
-    <section class="py-20 bg-gray-50">
+    <section class="py-14 md:py-20 bg-gray-50">
         <div class="max-w-6xl mx-auto px-6">
-            <div class="flex flex-col md:flex-row-reverse items-center gap-12">
+            <div class="flex flex-col md:flex-row-reverse items-center gap-8 md:gap-12">
                 <div class="md:w-1/2">
                     <img src="images/arrows.png" alt="သရရိုက်နှိပ်ပုံစံ" class="w-full rounded-xl border border-gray-100 shadow-sm">
                 </div>
                 <div class="md:w-1/2">
-				<h3 class="text-2xl font-bold mb-4 text-gray-800 break-words">
+				<h3 class="text-xl md:text-2xl font-bold mb-4 text-gray-800 leading-snug text-balance">
 					テキスト選択もこれ以上ないほど便利です！
 				</h3>
 
@@ -148,12 +150,12 @@
 
 
 
-<section id="demo" class="py-24 text-center">
-    <h2 class="text-3xl font-bold mb-16">今すぐ体験してみてください。</h2>
-    <div class="max-w-2xl mx-auto px-6">
+<section id="demo" class="py-16 md:py-24 text-center px-6">
+    <h2 class="text-xl md:text-3xl font-bold mb-10 md:mb-16 text-balance">今すぐ体験してみてください。</h2>
+    <div class="max-w-2xl mx-auto">
 
         <!-- PC Card -->
-        <div class="p-10 rounded-3xl bg-white border border-gray-100 shadow-xl flex flex-col items-center relative overflow-hidden">
+        <div class="p-6 md:p-10 rounded-3xl bg-white border border-gray-100 shadow-xl flex flex-col items-center relative overflow-hidden">
             <h4 class="text-xl font-bold mb-6 text-gray-800">ヤハキー Demo</h4>
             <div class="h-32 flex items-center mb-8">
                 <img src="images/pc.png" alt="PC demo" class="max-h-full w-auto object-contain grayscale hover:grayscale-0 transition duration-500">
