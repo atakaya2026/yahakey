@@ -163,13 +163,16 @@
             </div>
             <a href="try.html" class="inline-block w-full py-3 bg-gray-900 text-white rounded-xl font-bold hover:bg-blue-600 transition text-center">体験する</a>
 
-            <!-- 모바일에서 볼 때: PC 안내 오버레이 -->
+            <!-- 모바일에서 볼 때: PC 안내 오버레이 (md 이상에서는 숨김) -->
             <div id="pc-overlay"
-                 class="absolute inset-0 rounded-3xl flex-col items-center justify-center gap-4 px-6"
-                 style="display:none; background:rgba(255,255,255,0.96); backdrop-filter:blur(4px);">
+                 class="absolute inset-0 rounded-3xl flex md:hidden flex-col items-center justify-center gap-3 px-6"
+                 style="background:rgba(255,255,255,0.97); backdrop-filter:blur(4px);">
                 <h4 class="text-xl font-bold text-gray-800">ヤハキー Demo</h4>
                 <span class="text-5xl">🖥️</span>
-                <p class="text-sm text-gray-500 text-center">体験はPCからのみ可能です。</p>
+                <p class="text-base font-bold text-gray-700">この体験はPC専用です</p>
+                <p class="text-sm text-gray-500 leading-relaxed">
+                    パソコンのブラウザで<br><span class="keep-phrase">yahakey.com</span> を開いて<br>お試しください。
+                </p>
             </div>
         </div>
 
