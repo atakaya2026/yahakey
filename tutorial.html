@@ -204,9 +204,9 @@ const GROUPS = {
   'な': ['な','に','ぬ','ね','の'],
   'は': ['は','ひ','ふ','へ','ほ'],
   'ま': ['ま','み','む','め','も'],
-  'や': ['や', null,'ゆ', null,'よ'],
+  'や': ['や','「','ゆ','」','よ'],   // ◀좌=「 ▶우=」 (.exe와 동일)
   'ら': ['ら','り','る','れ','ろ'],
-  'わ': ['わ','を','ん','ー', null],
+  'わ': ['わ','を','ん','ー','を'],   // ▼하=を (.exe와 동일: わ행은 5열도 を)
 };
 const GROUP_KEYS = { w:'や', e:'は', r:'な', a:'わ', s:'か', d:'あ', f:'た', x:'ま', c:'さ', v:'ら' };
 const FLICK_KEYS = { j:1, i:2, l:3, k:4 };   // 좌1 상2 우3 하4 (중앙0)
@@ -256,7 +256,14 @@ function engFlick(idx) {
   if (!eng.group) return;
   const ch = GROUPS[eng.group][idx];
   if (ch == null) return;
-  replaceLast(ch); eng.groupIdx = idx;
+  replaceLast(ch);
+  // .exe와 동일: や행의 「」(좌·우 플릭)와 わ행의 모든 플릭 결과는 그 자리에서 확정 —
+  // 이후 방향키를 더 눌러도 바뀌지 않는다.
+  if ((eng.group === 'や' && (ch === '「' || ch === '」')) || eng.group === 'わ') {
+    resetEng();
+    return;
+  }
+  eng.groupIdx = idx;
   eng.modBase = null; eng.modIdx = 0;
 }
 function engMod() {
