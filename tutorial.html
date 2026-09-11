@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>ヤハキー</title>
+<title>ヤリナ</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
 <link rel="icon" href="images/logo.png" type="image/png">
 <style>
@@ -177,8 +177,9 @@
 
 <script>
 /* ══════════════════════════════════════════════════════════════════════
-   ヤハキー(Yahakey) — 왼손 텐키 + 오른손 플릭키 일본어 가나 입력 튜토리얼
-   배열 2026-09-07 개편: 1행 や/は/な · 2행 わ/か/あ/た · 3행 ま/さ/ら ("ヤハに変えてまさる")
+   ヤリナ(Yarina) — 왼손 텐키 + 오른손 플릭키 일본어 가나 입력 튜토리얼
+   배열 2026-09-11 개편: 1행 ま/さ/は · 2행 わ/か/あ/た · 3행 や/ら/な
+     ("わは脇に、まずは / 若いと / ヤリナ!")
    좌표는 모두 images/bg_tutorial.png 실측 기준 % (키 그리드는 이전과 동일, 가나 라벨만 이동).
    bg_tutorial_blind.png도 키 배열이 사실상 동일해 같은 좌표를 공유한다.
    ────────────────────────────────────────────────────────────────────── */
@@ -208,7 +209,7 @@ const GROUPS = {
   'ら': ['ら','り','る','れ','ろ'],
   'わ': ['わ','を','ん','ー','を'],   // ▼하=を (.exe와 동일: わ행은 5열도 を)
 };
-const GROUP_KEYS = { w:'や', e:'は', r:'な', a:'わ', s:'か', d:'あ', f:'た', x:'ま', c:'さ', v:'ら' };
+const GROUP_KEYS = { w:'ま', e:'さ', r:'は', a:'わ', s:'か', d:'あ', f:'た', x:'や', c:'ら', v:'な' };
 const FLICK_KEYS = { j:1, i:2, l:3, k:4 };   // 좌1 상2 우3 하4 (중앙0)
 const STANDALONE = { o:'ん', p:'っ' };
 
@@ -423,7 +424,7 @@ let mode = 'popup';
 
 const INTRO = [
   `左手エリアには<span class="k">テンキー</span>があり、\n右手エリアには<span class="k">フリックキー</span>があります。\nフリックの方向はスマートフォンと同じです。`,
-  `テンキー配列はこう覚えると簡単です。\nわは脇に、\n1行目 │ <span class="k">ヤハに</span> 💡\n2行目 │ <span class="k">変えて</span> ⌨\n3行目 │ <span class="k">まさる</span> 👍`,
+  `テンキー配列はこう覚えると簡単です。\nわは脇に、\n1行目 │ <span class="k">まずは </span> \n2行目 │ <span class="k">若いと –</span> \n3行目 │ <span class="k">ヤリナ!</span> `,
   `それでは今から<span class="k">「こんにちは」</span>を\n入力してみましょう。\n矢印に従って押してみてください。`,
 ];
 let introIdx = 0;
